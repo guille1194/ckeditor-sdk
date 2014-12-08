@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see license.html or http://sdk.ckeditor.com/license.html.
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Use the Media Embed plugin to insert videos, images, tweets and much more.">
+	<meta name="keywords" content="">
+	<meta name="sdk-samples" content="Embedding media content|Media Embed paste support|Output strategies">
+	<title>Media Embed</title>
+	<link href="http://fonts.googleapis.com/css?family=Maven+Pro:700,500,400" rel="stylesheet">
+	<link href="../theme/css/sdk.css" rel="stylesheet">
+	<script src="../vendor/ckeditor/ckeditor.js"></script>
+	<script src="assets/picoModal-2.0.1.min.js"></script>
+	<script src="assets/contentloaded.js"></script>
+	<script src="assets/simplesample.js"></script>
+	<script src="assets/beautify-html.js"></script>
+	<script src="assets/sample.js"></script>
+	<!--[if lt IE 9]>
+	<script src="assets/html5shiv.min.js"></script>
+	<![endif]-->
+	<link rel="icon" href="../theme/img/favicon.ico">
+</head>
+<body>
+	<header class="sdk-header">
+	</header>
+	<section class="sdk-container">
+		<nav class="sdk-sidebar">
+		</nav>
+		<section class="sdk-contents">
+			<h1>Inserting Media Embed objects</h1>
+
+			<p>
+				The Media Embed plugin allows you to insert videos, images, tweets, music and much more from popular services.
+			</p>
+
+			<p>
+				Simply enable the plugin and paste a link to the desired content. You can also use the <strong>Insert Media Embed</strong> <span class="button_icon" data-icon="mediaEmbed" title="Insert media object">&nbsp;</span> toolbar button to open a dialog where you can insert a link.
+			</p>
+
+			<pre class="samples">
+CKEDITOR.replace( '<em>textarea_id</em>', {
+	<strong>extraPlugins: 'mediaembed'</strong>
+} );
+			</pre>
+
+			<textarea id="editor1" data-sample="1" data-sample-preserveWhitespace>
+&lt;p&gt;Vimeo video:&lt;/p&gt;
+&lt;div data-oembed-url=&quot;http://vimeo.com/46523580&quot;&gt;&lt;/div&gt;
+&lt;p&gt;Twitter sample:&lt;/p&gt;
+&lt;div data-oembed-url=&quot;https://twitter.com/ckeditor/status/425619710181650432&quot;&gt;&lt;/div&gt;
+&lt;p&gt;Github commit:&lt;/p&gt;
+&lt;div data-oembed-url=&quot;https://github.com/ckeditor/ckeditor-dev/commit/1878f1a35306c5fa1cb4622d8f42c02d772741fb&quot;&gt;&lt;/div&gt;
+&lt;p&gt;And much more!&lt;/p&gt;
+			</textarea>
+
+			<script data-sample="1">
+				CKEDITOR.replace( 'editor1', {
+					extraPlugins: 'mediaembed',
+					height: 500
+				} );
+			</script>
+
+			<h2>Media Embed paste support</h2>
+
+			<p>
+				By default Media Embed plugin comes with feature to detect embeddable content link in pasted text. In case of positive match it will automatically convert link into Media Embed widget.
+			</p>
+
+			<p>
+				This feature may be disabled by the <a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-mediaEmbed_disablePasteUpcast">CKEDITOR.config.mediaEmbed_disablePasteUpcast</a> config property.
+			</p>
+
+			<h3>Try it yourself</h3>
+
+			<p>
+				Simply copy following link: <input type="text" value="https://twitter.com/ckeditor/status/401373919157821441" name="sample_media_link" readonly="readonly" onclick="this.select();" />
+			</p>
+
+			<p>
+				And paste it to editor below:
+			</p>
+
+			<textarea id="editor2" data-sample="2" data-sample-preserveWhitespace>
+&lt;h1&gt;Media Embed paste support&lt;/h1&gt;
+&lt;p&gt;Paste the link below:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+			</textarea>
+
+			<script data-sample="2">
+				CKEDITOR.replace( 'editor2', {
+					extraPlugins: 'mediaembed'
+				} );
+			</script>
+
+			<h2>Output strategies</h2>
+
+			<p>
+				Some developers might actually need to customize widget behaviour output HTML.
+			</p>
+
+			<p>
+				Media embed allows you to customize output using different output strategies.
+			</p>
+
+			<p>
+				The plugin ships with two output strategies:
+			</p>
+
+			<ul>
+				<li><strong>default</strong> - Includes whole code to the output HTML.</li>
+				<li><strong>oembed</strong> - Places <code>oembed</code> element with media link as an inner text.</li>
+			</ul>
+
+			<p>
+				Output strategies may be configured using the <a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-mediaEmbed_output">CKEDITOR.config.mediaEmbed_output</a> property.
+			</p>
+
+<pre class="samples">CKEDITOR.replace( 'editor3', {
+	extraPlugins: 'mediaembed',
+	mediaEmbed_output: 'oembed'
+} );</pre>
+
+			<p>
+				Editor below uses oembed output strategy, you can see that by clicking source toolbar button.
+			</p>
+
+			<textarea id="editor3" data-sample="3" data-sample-preserveWhitespace>
+&lt;h1&gt;This editor uses oembed output strategy&lt;/h1&gt;
+&lt;p&gt;You can confirm that by clicking source toolbar button, it's using &amp;lt;oembed&amp;gt;link&amp;lt;/oembed&amp;gt; abstract representation, rather than raw HTML.&lt;/p&gt;
+&lt;oembed&gt;https://twitter.com/ckeditor/status/401373919157821441&lt;/oembed&gt;
+			</textarea>
+
+			<script data-sample="3">
+				CKEDITOR.replace( 'editor3', {
+					extraPlugins: 'mediaembed',
+					mediaEmbed_output: 'oembed'
+				} );
+			</script>
+		</section>
+	</section>
+
+	<footer class="sdk-footer">
+	</footer>
+</body>
+</html>
